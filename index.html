@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QRCode</title>
+	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css">
+	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-plain.css">
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-custom-width.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
+	<script src="node_modules/qrcode-generator/qrcode.js"></script>
+	<script src="node_modules/qrcode-generator/qrcode_UTF8.js"></script>
+	<script src="node_modules/angular-qrcode/angular-qrcode.js"></script>
+	<script>
+		var app = angular.module("myapp", ['monospaced.qrcode', 'ngDialog']);
+		app.controller("myCtrl", function($scope, ngDialog) {
+			$scope.abc = "";
+    		$scope.showCode = function (value) {
+        		$scope.abc = value;
+        		console.log(value)
+    		}		
+
+    		$scope.showPop = function () {
+    			ngDialog.open({ template: 'templateId' });
+    		}
+		});
+	</script>
+
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myCtrl">
+		
+	<button ng-click="showPop()">Click Show!</button>
+	<script type="text/ng-template" id="templateId">
+		<div>
+			<h1 style="padding-left:1.5cm;">Package QR Code</h1>
+	    	<qrcode style="padding-left:2.5cm;" data="E6C7B7BD83A838EF97F77EA988B547B6D1F88C6A7E373E5A2444D979F0020DFC" version="10" error-correction-level="H" size="200" color="#000000" download></qrcode>
+		</div>
+	</script>
+</div>
+	
+</body>
+</html>
